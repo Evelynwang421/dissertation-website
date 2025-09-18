@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI for Cultural Nuance | Yihui Wang's Dissertation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Lighter gray background */
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .tab-button.active {
+            border-color: #3b82f6; /* Blue-500 */
+            color: #3b82f6;
+            background-color: #eff6ff; /* Blue-50 */
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-lg font-bold text-blue-600">
+                AI for Cultural Nuance
+            </div>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#abstract" class="text-gray-600 hover:text-blue-600">Abstract</a>
+                <a href="#methodology" class="text-gray-600 hover:text-blue-600">Methodology</a>
+                <a href="#findings" class="text-gray-600 hover:text-blue-600">Key Findings</a>
+                <a href="#demo" class="text-gray-600 hover:text-blue-600">Interactive Demo</a>
+                <a href="#conclusion" class="text-gray-600 hover:text-blue-600">Conclusion</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white h-[60vh] flex items-center justify-center text-center">
+        <div class="container mx-auto px-6 fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Cultivating AI for Cultural Nuance</h1>
+            <p class="text-lg md:text-xl mb-2">A Comparative Study of Text Analysis and Generation in Tang Dynasty Poetry and Pride and Prejudice</p>
+            <p class="text-base text-gray-300">By Yihui Wang | University of Nottingham</p>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-6 py-12">
+        <!-- Abstract Section -->
+        <section id="abstract" class="my-16 fade-in">
+            <h2 class="text-3xl font-bold text-center mb-8">Abstract</h2>
+            <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+                <p class="text-lg leading-relaxed text-gray-700">
+                    This study evaluates the comprehension, learning potential, and cultural bias of large language models (LLMs) in complex literary texts. We propose a two-stage, human-expert-evaluated framework and introduce a "Learning Improvement Index (ΔI)" to quantify the model's cognitive calibration and self-enhancement. The results indicate that LLMs have systematic limitations in understanding cultural and historical contexts, with performance strongly influenced by cultural background alignment and prompt language. This framework provides a reproducible tool for assessing deep comprehension and offers empirical guidance for future model optimization.
+                </p>
+            </div>
+        </section>
+
+        <!-- Methodology Section -->
+        <section id="methodology" class="my-16 fade-in">
+            <h2 class="text-3xl font-bold text-center mb-12">Core Methodology</h2>
+            <div class="grid md:grid-cols-2 gap-10 items-center max-w-6xl mx-auto">
+                <!-- Stage 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-400">
+                    <h3 class="text-xl font-bold mb-4 text-blue-600">Stage 1: Baseline Performance Assessment</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">1</div>
+                            <p>The model generates an initial interpretation of the literary text.</p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">2</div>
+                            <p>Human experts score the interpretation to get the **baseline score S_baseline.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Stage 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-400">
+                    <h3 class="text-xl font-bold mb-4 text-green-600">Stage 2: Improvement Performance Assessment</h3>
+                     <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="bg-green-100 text-green-700 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">1</div>
+                            <p>The model learns from an authoritative expert explanation.</p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-green-100 text-green-700 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">2</div>
+                            <p>The model produces a new, improved interpretation.</p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-green-100 text-green-700 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">3</div>
+                            <p>Experts score again to get the improved score S_improved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center bg-gray-100 p-6 rounded-lg max-w-2xl mx-auto">
+                <h3 class="text-xl font-bold">Core Metric: Learning Improvement Index (ΔI)</h3>
+                <p class="text-2xl font-mono mt-2 text-indigo-600">ΔI = S_improved - S_baseline</p>
+                <p class="mt-2 text-gray-600">This index quantifies the model's ability to learn from external knowledge and calibrate its own understanding.</p>
+            </div>
+        </section>
+
+        <!-- Key Findings Section -->
+        <section id="findings" class="my-16 fade-in">
+            <h2 class="text-3xl font-bold text-center mb-8">Three Key Findings</h2>
+            <div class="max-w-5xl mx-auto">
+                <div class="flex justify-center border-b mb-6">
+                    <button class="tab-button active px-6 py-3 text-lg font-semibold" onclick="openTab(event, 'finding1')">Cultural Ceiling Effect</button>
+                    <button class="tab-button px-6 py-3 text-lg font-semibold" onclick="openTab(event, 'finding2')">Cultural Home-Field Advantage</button>
+                    <button class="tab-button px-6 py-3 text-lg font-semibold" onclick="openTab(event, 'finding3')">Impact of Prompt Language</button>
+                </div>
+
+                <div id="finding1" class="tab-content active p-4">
+                    <h3 class="text-2xl font-bold mb-4">Finding 1: The Cultural Ceiling Effect</h3>
+                    <p class="text-lg mb-6">All models scored significantly lower on the "Cultural & Historical Context" dimension. This reveals a systemic bottleneck in LLMs' ability for deep cultural reasoning.</p>
+                    <img src="https://placehold.co/800x400/E2E8F0/4A5568?text=Your+Chart+Here+(Fig+4.1)" alt="Chart for Cultural Ceiling Effect" class="rounded-lg shadow-md mx-auto">
+                </div>
+                <div id="finding2" class="tab-content p-4">
+                    <h3 class="text-2xl font-bold mb-4">Finding 2: The Cultural "Home-Field Advantage"</h3>
+                    <p class="text-lg mb-6">The model's cultural background is directly and quantifiably correlated with its performance. Chinese-background models performed better on Tang poetry, while Western-background models excelled on Pride and Prejudice.</p>
+                     <img src="https://placehold.co/800x400/E2E8F0/4A5568?text=Your+Charts+Here+(Fig+4.5+&+4.6)" alt="Chart for Home-Field Advantage" class="rounded-lg shadow-md mx-auto">
+                </div>
+                <div id="finding3" class="tab-content p-4">
+                    <h3 class="text-2xl font-bold mb-4">Finding 3: The Decisive Impact of Prompt Language</h3>
+                    <p class="text-lg mb-6">In the Tang poetry test, using prompts in the original Chinese far outperformed using high-quality English translations. This proves that language is not just an instruction, but a critical medium for cultural signals.</p>
+                    <img src="model_p.png" alt="Chart for Prompt Language Impact" class="rounded-lg shadow-md mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/800x450/E2E8F0/4A5568?text=Chart+Fig+4.8+Failed+to+Load';">
+                    <p class="text-center text-sm mt-2 text-gray-500">Fig 4.8: Model Performance on Tang Poetry: Chinese vs. English Prompts</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Demo Section -->
+        <section id="demo" class="my-20 fade-in bg-gray-50 py-16 rounded-2xl">
+            <h2 class="text-3xl font-bold text-center mb-2">Interactive Demo</h2>
+            <p class="text-center text-gray-600 mb-10">Experience the Model's Learning Process</p>
+            <div class="max-w-6xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+                <!-- Controls -->
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label for="modelSelect" class="block text-sm font-medium text-gray-700 mb-1">Select Model</label>
+                        <select id="modelSelect" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="deepseek">DeepSeek (Chinese Background)</option>
+                            <option value="gemini">Gemini 2.5 (Western Background)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="textSelect" class="block text-sm font-medium text-gray-700 mb-1">Select Text</label>
+                        <select id="textSelect" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="tang_poem">Tang Poem: "Seeing Meng Haoran off at Yellow Crane Tower"</option>
+                            <option value="pride_prejudice">Pride and Prejudice (Excerpt)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Results -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Initial Interpretation -->
+                    <div class="border p-4 rounded-lg bg-gray-50">
+                        <h4 class="font-bold text-lg mb-2">Initial Interpretation S_baseline</h4>
+                        <div id="initialInterpretation" class="prose prose-sm max-w-none h-64 overflow-y-auto bg-white p-3 rounded"></div>
+                    </div>
+                    <!-- Improved Interpretation -->
+                    <div class="border p-4 rounded-lg bg-blue-50">
+                         <h4 class="font-bold text-lg mb-2 text-blue-700">Improved Interpretation S_improved</h4>
+                        <div id="improvedInterpretation" class="prose prose-sm max-w-none h-64 overflow-y-auto bg-white p-3 rounded"></div>
+                    </div>
+                </div>
+
+                <!-- Scores and Delta -->
+                <div class="mt-8">
+                    <h4 class="font-bold text-lg text-center mb-4">Quantitative Analysis of Learning Effect</h4>
+                    <div id="scores" class="flex justify-around text-center"></div>
+                    <div class="text-center mt-6">
+                        <button id="expertBtn" class="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                            View Expert Explanation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion & Future Work Section -->
+        <section id="conclusion" class="my-16 fade-in">
+            <h2 class="text-3xl font-bold text-center mb-12">Conclusion & Future Work</h2>
+            <div class="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4">Research Conclusions</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Successfully proposed the ΔI index and a two-stage framework to effectively quantify the model's learning potential.</li>
+                        <li>Empirically revealed three major findings: the cultural ceiling, home-field advantage, and language effect.</li>
+                        <li>Provides a reproducible diagnostic tool for future model optimization and bias mitigation.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4">Future Work</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Transform the evaluation framework into a training paradigm to directly enhance model capabilities.</li>
+                        <li>Integrate explainability techniques to deeply explore the internal mechanisms of bias.</li>
+                        <li>Develop an automated evaluation agent to improve assessment efficiency.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Yihui Wang. All Rights Reserved.</p>
+            <p class="text-sm text-gray-400 mt-2">MSc Computer Science Dissertation, University of Nottingham</p>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="expertModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6 relative">
+            <h3 class="text-2xl font-bold mb-4">Authoritative Expert Explanation</h3>
+            <div id="expertContent" class="prose max-h-[60vh] overflow-y-auto"></div>
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        // Lucide Icons
+        lucide.createIcons();
+
+        // Tab functionality
+        function openTab(event, tabName) {
+            let i, tabcontent, tabbuttons;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+        
+        // Interactive Demo
+        const demoData = {
+            deepseek: {
+                tang_poem: {
+                    initial: `
+                        <p><strong>Emotion:</strong> The emotional tone is a blend of deep reluctance to part and broad blessings, consistent with the "sorrowful but not overly sentimental" tradition.</p>
+                        <p><strong>Imagery:</strong> Identifies common meanings of images like the Yellow Crane Tower (parting/immortals), the misty March (prosperity), the lone sail (loneliness), and the Yangtze River (eternity/blessings).</p>
+                        <p><strong>Cultural Context:</strong> Mentions Tang Dynasty literati, the prosperity of Yangzhou, and the legend of the Yellow Crane Tower, but the connections are superficial and not deeply integrated with the poem's artistic conception.</p>
+                    `,
+                    improved: `
+                        <p><strong>Emotion:</strong> Emotion is portrayed as a dynamic, sublimating process. The gaze follows the lone sail until it vanishes, and the feeling accumulates from a specific farewell, ultimately merging with the universe and elevating into a meditation on life, time, and space.</p>
+                        <p><strong>Imagery:</strong> There is a contrast (misty flowers vs. lone sail) and extension (sail → shadow → vanish → river flow). The "lone sail" is the ultimate emotional projection, and the "Yangtze River" is the final emotional vessel, capturing and eternalizing the poem's sentiment.</p>
+                        <p><strong>Cultural Context:</strong> "Misty March" is a microcosm of the High Tang era's spirit; personal parting feelings are unified with the era's high morale. The "flow" of the Yangtze aligns with the life posture of Tang literati. The context is an intrinsic part of the artistic conception.</p>
+                    `,
+                    scores: { emotion: 4.8, imagery: 5.0, culture: 4.1 },
+                    improved_scores: { emotion: 5.5, imagery: 5.8, culture: 5.2 },
+                    expert: `
+                        <p>Authoritative scholars point out that the poem's emotion is "an emotional sublimation and eternal melancholy under an affectionate gaze." The emotion is dynamic: from a specific farewell to a prolonged gaze, finally elevating to philosophical reflections on parting, time, and the universe.</p>
+                        <p>The imagery system is a "dynamic construction and emotional projection." The "lone sail" is lyrical rather than realistic. "Azure sky" and "skyline flow" complete the artistic leap from the real to the virtual, from the finite to the infinite.</p>
+                        <p>Culturally, "the poem is a natural expression of the spirit of the age." "Misty March" epitomizes the atmosphere of the Tang Dynasty (prosperity, hope, vitality). The imagery of water aligns with the literati's mindset of roaming and seeking achievement.</p>
+                    `
+                },
+                pride_prejudice: {
+                    initial: `<p>A preliminary description of Mrs. Bennet's anxiety about marriage and wealth, but fails to deeply reveal the underlying social pressures.</p>`,
+                    improved: `<p>Accurately points out that Mrs. Bennet's words and actions reflect the vulnerable position of middle-class women in Regency England under inheritance laws (entailment), where marriage was their only economic security.</p>`,
+                    scores: { emotion: 4.5, imagery: 4.5, culture: 4.0 },
+                    improved_scores: { emotion: 5.1, imagery: 5.0, culture: 4.8 },
+                    expert: `<p>Expert analysis indicates that Mrs. Bennet is not just a comedic, anxious mother but a sharp satire on the social system of the time. Her obsession with her daughters' marriages stems from the desperate reality that women could not inherit property under the "entailment" system. The novel critiques the commodification of women and the view of marriage as a transaction through her actions.</p>`
+                }
+            },
+            gemini: {
+                tang_poem: {
+                    initial: `<p>A general grasp of the sadness of parting, but the analysis is broad, focusing on historical and geographical influences without a deep dive into the poem's specific wording.</p>`,
+                    improved: `<p>Able to extract concepts of emotional resonance related to the poet's historical context and interpersonal interactions from the expert text, but fails to fully incorporate the more nuanced insights.</p>`,
+                    scores: { emotion: 4.4, imagery: 4.3, culture: 4.0 },
+                    improved_scores: { emotion: 5.1, imagery: 5.0, culture: 4.9 },
+                    expert: `
+                        <p>Authoritative scholars point out that the poem's emotion is "an emotional sublimation and eternal melancholy under an affectionate gaze." The emotion is dynamic: from a specific farewell to a prolonged gaze, finally elevating to philosophical reflections on parting, time, and the universe.</p>
+                        <p>The imagery system is a "dynamic construction and emotional projection." The "lone sail" is lyrical rather than realistic. "Azure sky" and "skyline flow" complete the artistic leap from the real to the virtual, from the finite to the infinite.</p>
+                        <p>Culturally, "the poem is a natural expression of the spirit of the age." "Misty March" epitomizes the atmosphere of the Tang Dynasty (prosperity, hope, vitality). The imagery of water aligns with the literati's mindset of roaming and seeking achievement.</p>
+                    `
+                },
+                pride_prejudice: {
+                    initial: `<p>Accurately identifies the conversational tension between characters and a preliminary awareness of social class, but the analysis of irony is not deep enough.</p>`,
+                    improved: `<p>With expert guidance, it can more clearly articulate that Mr. Darcy's "pride" is not just a personal trait but a manifestation of his aristocratic class superiority, and Elizabeth's "prejudice" stems from her preconceived notions of this class.</p>`,
+                    scores: { emotion: 5.1, imagery: 5.0, culture: 4.3 },
+                    improved_scores: { emotion: 5.7, imagery: 5.6, culture: 5.3 },
+                    expert: `<p>Expert analysis notes that Mr. Darcy's initial words and behavior are a concentrated expression of the inherent social patterns and class concepts of the British aristocracy at the time. The novel's brilliance lies in its profound satire and deconstruction of this aristocratic "pride" through Elizabeth's sharp but prejudiced perspective, revealing how class divisions distort human relationships.</p>`
+                }
+            }
+        };
+
+        const modelSelect = document.getElementById('modelSelect');
+        const textSelect = document.getElementById('textSelect');
+        const initialDiv = document.getElementById('initialInterpretation');
+        const improvedDiv = document.getElementById('improvedInterpretation');
+        const scoresDiv = document.getElementById('scores');
+        const expertBtn = document.getElementById('expertBtn');
+        const modal = document.getElementById('expertModal');
+        const expertContentDiv = document.getElementById('expertContent');
+
+        function updateDemo() {
+            const model = modelSelect.value;
+            const text = textSelect.value;
+            const data = demoData[model][text];
+
+            initialDiv.innerHTML = data.initial;
+            improvedDiv.innerHTML = data.improved;
+            expertContentDiv.innerHTML = data.expert;
+
+            scoresDiv.innerHTML = `
+                <div class="px-2">
+                    <p class="font-bold text-lg">${data.scores.emotion.toFixed(1)} → ${data.improved_scores.emotion.toFixed(1)}</p>
+                    <p class="text-sm text-gray-500">Emotion</p>
+                    <p class="text-green-600 font-bold">ΔI: +${(data.improved_scores.emotion - data.scores.emotion).toFixed(1)}</p>
+                </div>
+                <div class="px-2">
+                    <p class="font-bold text-lg">${data.scores.imagery.toFixed(1)} → ${data.improved_scores.imagery.toFixed(1)}</p>
+                    <p class="text-sm text-gray-500">Imagery/Irony</p>
+                    <p class="text-green-600 font-bold">ΔI: +${(data.improved_scores.imagery - data.scores.imagery).toFixed(1)}</p>
+                </div>
+                <div class="px-2">
+                    <p class="font-bold text-lg">${data.scores.culture.toFixed(1)} → ${data.improved_scores.culture.toFixed(1)}</p>
+                    <p class="text-sm text-gray-500">Cultural Context</p>
+                    <p class="text-green-600 font-bold">ΔI: +${(data.improved_scores.culture - data.scores.culture).toFixed(1)}</p>
+                </div>
+            `;
+        }
+        
+        expertBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        modelSelect.addEventListener('change', updateDemo);
+        textSelect.addEventListener('change', updateDemo);
+
+        // Initial load
+        updateDemo();
+
+        // Close modal on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
